@@ -1,0 +1,39 @@
+<h1 class="text-center text-amber-700 underline text-3xl font-bold my-4">
+  Hello in Todo list app
+</h1>
+
+<input type="text"
+  class=" add w-1/2 outline-none border-solid border-2 p-3 rounded-full mb-4 border-amber-200 focus-visible:border-amber-500"
+  placeholder="what are you up to do?" [(ngModel)]="addTaskValue" (keyup.enter)="addTask()" />
+<div class=" content w1/2">
+  <div class="flex flex-row justify-between mb-2 p-2 bg-white shadow-2xl rounded-lg text-zinc-900" *ngFor="let task of taskArr">
+    <div>
+      <p>{{task.taskName}}</p>
+    </div>
+    <div>
+      <button class="bg-blue-500 outline-none w-10 border-blue-500 rounded-lg py-2 px-4 mx-2" type="button"
+        data-bs-toggle="modal" data-bs-target="#editModal" (click)="call(task)">e</button>
+      <button class="bg-red-600 outline-none w-10 border-red-600 rounded-lg py-2 px-4"
+        (click)="deleteTask(task)">x</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edit Task</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="text"
+          class="w-2/3 border-solid border-2 py-2 ms-2 outline-none rounded-lg border-zinc-300 focus-visible:border-green-500"
+          [(ngModel)]="editTaskValue" />
+        <button class="bg-green-600 px-3 py-2 text-slate-50 rounded-lg outline-none border-green-600"
+          data-bs-dismiss="modal" (click)="editTask()">update</button>
+      </div>
+    </div>
+  </div>
+</div>
